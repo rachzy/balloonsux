@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/balloonsux/static/css/main.a643bd63.css",
+    "main.js": "/balloonsux/static/js/main.7489345b.js",
+    "static/media/soundtrack.mp3": "/balloonsux/static/media/soundtrack.d4b6f19f6013c7bac991.mp3",
+    "static/media/pop.mp3": "/balloonsux/static/media/pop.ba853897a73567988d86.mp3",
+    "static/media/balloon-green.png": "/balloonsux/static/media/balloon-green.c9c6dc9ee02dee5e7937.png",
+    "static/media/balloon-yellow.png": "/balloonsux/static/media/balloon-yellow.ec4e32bcc1aa18983301.png",
+    "static/media/balloon-blue.png": "/balloonsux/static/media/balloon-blue.f002de6f550ad0c8fcc4.png",
+    "static/media/hit.mp3": "/balloonsux/static/media/hit.03db6272220c13ddd8ba.mp3",
+    "static/media/balloon-red.png": "/balloonsux/static/media/balloon-red.0f233d0a5d1bc1ca0116.png",
+    "index.html": "/balloonsux/index.html",
+    "main.a643bd63.css.map": "/balloonsux/static/css/main.a643bd63.css.map",
+    "main.7489345b.js.map": "/balloonsux/static/js/main.7489345b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a643bd63.css",
+    "static/js/main.7489345b.js"
+  ]
+}
