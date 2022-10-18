@@ -19,7 +19,7 @@
 <p>Balloon Pop - <a href="https://www.youtube.com/watch?v=V7smeTO9i2M">Mouth Pop Sound Effect</a></p>
 <p>-1 Life - <a href="https://www.youtube.com/watch?v=pKTWFAtCoqY">Changing Camera Sound from Fnaf</a> - Five Night's at Freddy's by Scott Cawthon</p>
 
-### License
+## License
 This project is MIT licensed, which means that you're free to do pretty much whatever you want with it. I don't require any kind of credits
 
 <p align="center"><i>~I hate balloons</i></p>
