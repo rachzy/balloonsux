@@ -1,78 +1,35 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Ballon from "./Components/Ballon";
+import React, { useState } from "react";
+import "./App.css";
+import Game from "./Components/Game";
 
-type colors = "red" | "blue" | "green" | "yellow";
-
-export interface IBallon {
-  id: number;
-  color: colors;
-  position: {
-    x: number;
-    y: number;
-  };
-}
+import Button from "./Components/Button";
+import Title from "./Components/Title";
 
 const App = () => {
-  const [ballons, setBallons] = useState<IBallon[]>([]);
-  const [ballonSpawningInterval, setBallonSpawningInterval] = useState(400);
-  const [ballonSpawningFunction, setBallonSpawningFunction] =
-    useState<NodeJS.Timer>();
+  const [gameStarted, setGameStarted] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [score, setScore] = useState(0);
 
-  const colors: colors[] = ["red", "blue", "green", "yellow"];
-
-  const generateRandomNumber = useCallback((min: number, max: number) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }, []);
-
-  const pickRandom = useCallback(
-    (arr: any[]) => {
-      return arr[generateRandomNumber(0, arr.length - 1)];
-    },
-    [generateRandomNumber]
-  );
-
-  const handleBalloonClick = (ballonId: number) => {
-    setBallons((currentBallons) => {
-      return currentBallons.filter((ballon) => ballon.id !== ballonId);
-    });
+  const handleButtonClick = () => {
+    setGameStarted(true);
   };
 
-  useEffect(() => {
-    if (ballonSpawningFunction) clearInterval(ballonSpawningFunction);
-    setBallonSpawningFunction(
-      setInterval(() => {
-        setBallons((currentBallons) => {
-          return [
-            ...currentBallons,
-            {
-              id: Date.now(),
-              color: pickRandom(colors),
-              position: {
-                x: 2,
-                y: generateRandomNumber(1, 100),
-              },
-            },
-          ];
-        });
-      }, ballonSpawningInterval)
+  if (gameOver) {
+    return (
+      <div className="main-wrapper">
+        <Title color="red">Game Over!</Title>
+      </div>
     );
-  }, [ballonSpawningInterval, generateRandomNumber]);
+  }
 
-  useEffect(() => {
-    console.log(ballons);
-  }, [ballons]);
+  if (gameStarted) {
+    return <Game score={score} setScore={setScore} setGameOver={setGameOver} />;
+  }
 
   return (
-    <div>
-      {ballons.map((ballon) => {
-        return (
-          <Ballon
-            key={ballon.id}
-            onClick={handleBalloonClick}
-            ballon={ballon}
-          />
-        );
-      })}
+    <div className="main-wrapper">
+      <Title>Balloonsux</Title>
+      <Button onClick={handleButtonClick}>Play</Button>
     </div>
   );
 };

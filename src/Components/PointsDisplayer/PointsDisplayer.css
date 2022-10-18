@@ -1,0 +1,7 @@
+p.points-label {
+  font-family: "Roboto", sans-serif;
+  font-size: 4vh;
+  color: white;
+
+  z-index: 99;
+}
