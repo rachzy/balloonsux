@@ -9,6 +9,9 @@ interface IProps {
 }
 
 const Ballon: React.FC<IProps> = ({ ballon, onClick }) => {
+  if(ballon.position.y > 90) {
+    console.log(ballon);
+  }
   return (
     <div
       onSelect={(e) => e.preventDefault()}
@@ -20,7 +23,7 @@ const Ballon: React.FC<IProps> = ({ ballon, onClick }) => {
       onClick={onClick.bind(this, ballon.id)}
     >
       <img
-        src={require(`../../images/balloon-${ballon.color}.png`)}
+        src={require(`../../assets/images/balloon-${ballon.color}.png`)}
         alt="balloon"
         width={80}
         draggable={false}

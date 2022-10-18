@@ -3,12 +3,17 @@ import "./Button.css";
 
 interface IProps {
   children: string;
+  color?: string;
   onClick?: () => void;
 }
 
-const Button: React.FC<IProps> = ({ children, onClick }) => {
+const Button: React.FC<IProps> = ({ children, onClick, color }) => {
   return (
-    <button className="default-btn" onClick={onClick}>
+    <button
+      style={color ? { backgroundColor: color } : {}}
+      className="default-btn"
+      onClick={onClick}
+    >
       {children}
     </button>
   );

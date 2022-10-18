@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Game.css";
 
 import Ballon from "../Balloon";
-import Score from "../PointsDisplayer";
+import PointsDisplayer from "../PointsDisplayer";
 
 import generateRandomNumber from "../../functions/generateRandomNumber";
 import pickRandom from "../../functions/pickRandom";
 
 import { IBallon, colors } from "../../types";
-import PointsDisplayer from "../PointsDisplayer";
 
 interface IProps {
   score: number;
@@ -21,16 +20,23 @@ const Game: React.FC<IProps> = ({ score, setScore, setGameOver }) => {
   const [balloonSpawningInterval, setBalloonSpawningInterval] = useState(1000);
   const [balloonSpawningFunction, setBalloonSpawningFunction] =
     useState<NodeJS.Timer>();
+  const [balloonPopAudio, setBalloonPopAudio] = useState(
+    new Audio(require("../../assets/audios/pop.mp3"))
+  );
   const [remainingLives, setRemainingLives] = useState(3);
 
   const colors: colors[] = ["red", "blue", "green", "yellow"];
 
   //Function that will be triggered when the user clicks in a Balloon
   const handleBalloonClick = (ballonId: number) => {
+    console.log("click");
     setBalloons((currentBalloons) => {
       return currentBalloons.filter((ballon) => ballon.id !== ballonId);
     });
     setScore((currentScore) => currentScore + 1);
+    balloonPopAudio.currentTime = 0.7;
+    balloonPopAudio.volume = 1;
+    balloonPopAudio.play();
   };
 
   //useEffect to spawn balloons at a certain period of time
@@ -48,6 +54,7 @@ const Game: React.FC<IProps> = ({ score, setScore, setGameOver }) => {
                 x: generateRandomNumber(10, 90),
                 y: 2,
               },
+              clicked: false,
             },
           ];
         });
@@ -66,7 +73,7 @@ const Game: React.FC<IProps> = ({ score, setScore, setGameOver }) => {
             ...balloon,
             position: {
               x: balloon.position.x,
-              y: balloon.position.y + 0.1,
+              y: balloon.position.y + 1,
             },
           };
         });
@@ -76,21 +83,34 @@ const Game: React.FC<IProps> = ({ score, setScore, setGameOver }) => {
           if (balloon.position.y < 100) return; //Y Limit
           //If Y is greater than this, decrease a life from the player
           setRemainingLives(
-            (currentRemainingLives) => currentRemainingLives - 1
+            (currentRemainingLives) => currentRemainingLives - 0.5
           );
         });
 
         //Return only balloons that have the Y position lower than 100
         return newCurrentBalloons.filter((balloon) => balloon.position.y < 100);
       });
-    }, 10);
+    }, 400);
+  }, []);
+
+  //useEffect to decrease the ballon spawning interval in every 10 seconds
+  useEffect(() => {
+    const spawningIntervalDecreaser = setInterval(() => {
+      setBalloonSpawningInterval((currentValue) => {
+        if (currentValue <= 100) {
+          clearInterval(spawningIntervalDecreaser);
+          return currentValue;
+        }
+        return currentValue - 100;
+      });
+    }, 10000);
   }, []);
 
   //useEffect to look for player's remaining lives
   useEffect(() => {
     if (remainingLives > 0) return;
     setGameOver(true);
-  }, [remainingLives]);
+  }, [remainingLives, setGameOver]);
 
   return (
     <div>
