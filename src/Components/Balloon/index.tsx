@@ -9,9 +9,6 @@ interface IProps {
 }
 
 const Ballon: React.FC<IProps> = ({ ballon, onClick }) => {
-  if(ballon.position.y > 90) {
-    console.log(ballon);
-  }
   return (
     <div
       onSelect={(e) => e.preventDefault()}

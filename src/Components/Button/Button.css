@@ -1,5 +1,6 @@
 button.default-btn {
   width: 30%;
+  min-width: 40vh;
 
   background-color: rgb(93, 185, 0);
   color: white;

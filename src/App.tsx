@@ -5,6 +5,7 @@ import Game from "./Components/Game";
 import Button from "./Components/Button";
 import Title from "./Components/Title";
 import PointsDisplayer from "./Components/PointsDisplayer";
+import Subtitle from "./Components/Subtitle";
 
 const App = () => {
   const [gameStarted, setGameStarted] = useState(false);
@@ -23,13 +24,19 @@ const App = () => {
   };
 
   if (gameOver) {
-    soundtrack.volume = 0.3
+    soundtrack.volume = 0.3;
     soundtrack.pause();
     return (
       <div className="main-wrapper">
         <Title color="red">Game Over!</Title>
-        <PointsDisplayer points={score} text="Your score" pointsColor="yellow" />
-        <Button color="red" onClick={handleButtonClick}>Play Again</Button>
+        <PointsDisplayer
+          points={score}
+          text="Your score"
+          pointsColor="yellow"
+        />
+        <Button color="red" onClick={handleButtonClick}>
+          Play Again
+        </Button>
       </div>
     );
   }
@@ -42,6 +49,7 @@ const App = () => {
   return (
     <div className="main-wrapper">
       <Title>Balloonsux</Title>
+      <Subtitle>By rachzy</Subtitle>
       <Button onClick={handleButtonClick}>Play</Button>
     </div>
   );
