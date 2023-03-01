@@ -11,11 +11,13 @@ import { IBallon, colors } from "../../types";
 
 interface IProps {
   score: number;
+  scoreLabel: string;
+  livesLabel: string;
   setScore: React.Dispatch<React.SetStateAction<number>>;
   setGameOver: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Game: React.FC<IProps> = ({ score, setScore, setGameOver }) => {
+const Game: React.FC<IProps> = ({ score, scoreLabel, livesLabel, setScore, setGameOver }) => {
   const [balloons, setBalloons] = useState<IBallon[]>([]);
   const [balloonSpawningInterval, setBalloonSpawningInterval] = useState(1000);
   const [balloonSpawningFunction, setBalloonSpawningFunction] =
@@ -123,12 +125,12 @@ const Game: React.FC<IProps> = ({ score, setScore, setGameOver }) => {
     <div>
       <div className="details-container">
         <PointsDisplayer
-          text="Your score"
+          text={scoreLabel}
           points={score}
           pointsColor={"yellow"}
         />
         <PointsDisplayer
-          text="Your lives"
+          text={livesLabel}
           points={remainingLives}
           pointsColor={"red"}
         />
