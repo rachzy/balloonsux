@@ -49,7 +49,7 @@ const App = () => {
   return (
     <div className="main-wrapper">
       <Title>Balloonsux</Title>
-      <Subtitle>By rachzy</Subtitle>
+      <Subtitle>By rachzy and oBST</Subtitle>
       <Button onClick={handleButtonClick}>Play</Button>
     </div>
   );
