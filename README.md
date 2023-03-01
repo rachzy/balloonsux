@@ -2,8 +2,6 @@
 <p align="center">Balloonsux is a game that you basically have to pop balloons and if they fall out of the screen, you lose 1 life. You have a total of 3 lives.</p>
 <h2 align="center"><a href="https://rachzy.github.io/balloonsux/" target="_blank">Click here to Play!</a></h2>
 
-## Infrastructure
-<p><b>Front-end:</b> React with TypeScript</p>
 
 ## Preview 📸
 ![Screenshot_1](https://user-images.githubusercontent.com/59806140/196541879-8d006554-b412-4fe5-9c5d-18f7b3a4d1da.png)
